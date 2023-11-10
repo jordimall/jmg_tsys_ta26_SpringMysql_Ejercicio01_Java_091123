@@ -5,7 +5,10 @@ package com.example.demo.dto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -17,14 +20,16 @@ import jakarta.persistence.Table;
 public class Suministra {
 
 	@Id
-	@ManyToOne
-	@Column(name = "CodigoPieza")
-	private Pieza codigoPieza;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-	@Id
 	@ManyToOne
-	@Column(name = "IdProveedor")
-	private Proveedor idProveedor;
+	@JoinColumn(name = "codigo_pieza")
+	private Pieza pieza;
+
+	@ManyToOne
+	@JoinColumn(name = "id_proveedor")
+	private Proveedor proveedor;
 
 	@Column(name = "Precio")
 	private int precio;
@@ -36,28 +41,37 @@ public class Suministra {
 	}
 
 	/**
-	 * @param codigoPieza
-	 * @param idProveedor
+	 * @param id
+	 * @param pieza
+	 * @param proveedor
 	 * @param precio
 	 */
-	public Suministra(Pieza codigoPieza, Proveedor idProveedor, int precio) {
-		this.codigoPieza = codigoPieza;
-		this.idProveedor = idProveedor;
+	public Suministra(int id, Pieza pieza, Proveedor proveedor, int precio) {
+		this.id = id;
+		this.pieza = pieza;
+		this.proveedor = proveedor;
 		this.precio = precio;
 	}
 
 	/**
-	 * @return the codigoPieza
+	 * @return the id
 	 */
-	public Pieza getCodigoPieza() {
-		return codigoPieza;
+	public int getId() {
+		return id;
 	}
 
 	/**
-	 * @return the idProveedor
+	 * @return the pieza
 	 */
-	public Proveedor getIdProveedor() {
-		return idProveedor;
+	public Pieza getPieza() {
+		return pieza;
+	}
+
+	/**
+	 * @return the proveedor
+	 */
+	public Proveedor getProveedor() {
+		return proveedor;
 	}
 
 	/**
@@ -68,17 +82,24 @@ public class Suministra {
 	}
 
 	/**
-	 * @param codigoPieza the codigoPieza to set
+	 * @param id the id to set
 	 */
-	public void setCodigoPieza(Pieza codigoPieza) {
-		this.codigoPieza = codigoPieza;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**
-	 * @param idProveedor the idProveedor to set
+	 * @param pieza the codigoPieza to set
 	 */
-	public void setIdProveedor(Proveedor idProveedor) {
-		this.idProveedor = idProveedor;
+	public void setPieza(Pieza pieza) {
+		this.pieza = pieza;
+	}
+
+	/**
+	 * @param proveedor the idProveedor to set
+	 */
+	public void setProveedor(Proveedor idProveedor) {
+		this.proveedor = idProveedor;
 	}
 
 	/**

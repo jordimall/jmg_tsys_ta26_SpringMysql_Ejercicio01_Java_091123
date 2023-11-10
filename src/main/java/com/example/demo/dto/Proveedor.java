@@ -30,7 +30,7 @@ public class Proveedor {
 	private String nombre;
 
 	@OneToMany
-	@JoinColumn(name = "Codigo")
+	@JoinColumn(name = "id_proveedor")
 	private List<Suministra> suministra;
 
 	/**
@@ -66,7 +66,7 @@ public class Proveedor {
 	 * @return the suministra
 	 */
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Suministra")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_proveedor")
 	public List<Suministra> getSuministra() {
 		return suministra;
 	}
@@ -88,6 +88,8 @@ public class Proveedor {
 	/**
 	 * @param suministra the suministra to set
 	 */
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_proveedor")
 	public void setSuministra(List<Suministra> suministra) {
 		this.suministra = suministra;
 	}

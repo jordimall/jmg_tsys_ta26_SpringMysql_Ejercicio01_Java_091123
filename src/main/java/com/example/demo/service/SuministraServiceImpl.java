@@ -6,6 +6,7 @@ package com.example.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ISuministraDAO;
 import com.example.demo.dto.Suministra;
@@ -13,28 +14,30 @@ import com.example.demo.dto.Suministra;
 /**
  * 
  */
-public class SuministraServiceImpl {
+@Service
+public class SuministraServiceImpl implements ISuministraService {
+
 	@Autowired
-	private ISuministraDAO daoSuministra;
+	private ISuministraDAO suministraDAO;
 
 	public List<Suministra> getAll() {
-		return daoSuministra.findAll();
+		return suministraDAO.findAll();
 	}
 
-	public Suministra getId(int codigoPieza, String idProveedor) {
-		return daoSuministra.findByCodigoPiezaAndIdProveedor(codigoPieza, idProveedor);
+	public Suministra getId(int id) {
+		return suministraDAO.findById(id).get();
 	}
 
-	public Suministra add(Suministra Suministra) {
-		return daoSuministra.save(Suministra);
+	public Suministra add(Suministra suministra) {
+		return suministraDAO.save(suministra);
 	}
 
-	public Suministra update(Suministra Suministra) {
-		return daoSuministra.save(Suministra);
+	public Suministra update(Suministra suministra) {
+		return suministraDAO.save(suministra);
 	}
 
-	public void delete(int codigoPieza, String idProveedor) {
-		daoSuministra.deleteByCodigoPiezaAndIdProveedor(codigoPieza, idProveedor);
+	public void delete(int id) {
+		suministraDAO.deleteById(id);
 	}
 
 }

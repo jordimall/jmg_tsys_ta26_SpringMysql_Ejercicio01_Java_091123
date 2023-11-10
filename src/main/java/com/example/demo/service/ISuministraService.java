@@ -11,16 +11,41 @@ import com.example.demo.dto.Suministra;
  * 
  */
 public interface ISuministraService {
+	/**
+	 * Deveuelve todos los suministras
+	 * 
+	 * @return List<Suministra>
+	 */
+	public List<Suministra> getAll();
 
-	public List<Suministra> getAll() ;
+	/**
+	 * Devuelve un suministra en especifico
+	 * 
+	 * @param id
+	 * @return Suministra
+	 */
+	public Suministra getId(int id);
 
-	public Suministra getId(int codigoPieza, String idProveedor);
-
+	/**
+	 * Añade un suministra a la base de datos
+	 * 
+	 * @param suministra
+	 * @return Suministra
+	 */
 	public Suministra add(Suministra suministra);
 
+	/**
+	 * Actualiza un suministra
+	 * 
+	 * @param suministra
+	 * @return Suministra
+	 */
 	public Suministra update(Suministra suministra);
 
-	public void delete(int codigoPieza, String idProveedor);
-
-
+	/**
+	 * Elimina un suministra
+	 * 
+	 * @param id
+	 */
+	public void delete(int id);
 }
